@@ -50,7 +50,7 @@ export function HeaderSections({ sections, handleDelete, handleEdit }) {
 			<h2>Experience</h2>
 			<div className="Experience">{experienceSections}</div>
 			<div className="Education">
-				<h2>Educatoin</h2>
+				<h2>Education</h2>
 				{educationSections}
 			</div>
 		</>
