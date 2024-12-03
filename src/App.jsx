@@ -1,15 +1,16 @@
-// import { useState } from "react";
 import { useState } from "react";
 import "./App.css";
 import { Form } from "./component/Form.jsx";
-import { CvSection } from "./component/CvSection.jsx";
+import { v4 as uuid } from "uuid";
+import { HeaderSections } from "./component/HeaderSections.jsx";
 
-const sections = [];
+let sections = [];
 
 function App() {
 	const [formType, setFormType] = useState("General");
 	const [formSections, setFormSections] = useState("");
 	const [inputs, setInputs] = useState({});
+	const [generalSubmitted, setGeneralSubmitted] = useState(false);
 
 	function handleCategorySwitch(e) {
 		setFormType(e.target.innerHTML);
@@ -22,31 +23,64 @@ function App() {
 		setInputs((values) => ({ ...values, [name]: value }));
 	};
 
+	const handleDelete = (event) => {
+		let sectionId = event.target.parentNode.parentNode.parentNode.id;
+
+		const removedSectionType = sections.filter(
+			(section) => section.id === sectionId
+		)[0].type;
+
+		sections.filter((section) => section.id != sectionId);
+		sections = sections.filter((section) => section.id != sectionId);
+
+		if (removedSectionType === "General") {
+			setGeneralSubmitted(false);
+		}
+
+		const newFormSections = (
+			<HeaderSections sections={sections} handleDelete={handleDelete} />
+		);
+
+		setFormSections(newFormSections);
+
+		// console.log(newFormSections);
+		// sections.filter();
+	};
+
 	function handleSubmission(e) {
 		e.preventDefault();
-		// console.log(e.target);
-		let formType = e.target.className;
-		let formID = 0;
-		let formInfo = {
-			id: formID,
-			type: formType,
+
+		const formInfo = {
+			id: uuid(),
+			type: e.target.className,
 			fieldValues: inputs,
 		};
 
+		if (formType === "General" && !generalSubmitted) {
+			setGeneralSubmitted(true);
+		} else if (formType === "General" && generalSubmitted) {
+			alert("General informations already submitted");
+			return;
+		}
+
 		sections.push(formInfo);
-		setInputs({});
 
-		// console.log(sections);
-
-		setFormSections(
-			sections.map((section) => (
-				<CvSection
-					key={section.id}
-					formType={section.type}
-					formInfo={section.fieldValues}
-				></CvSection>
-			))
+		// const newFormSections = sections.map((section) => (
+		// 	<CvSection
+		// 		key={section.id}
+		// 		formType={section.type}
+		// 		id={section.id}
+		// 		formInfo={section.fieldValues}
+		// 		handleDelete={handleDelete}
+		// 	></CvSection>
+		// ));
+		const newFormSections = (
+			<HeaderSections sections={sections} handleDelete={handleDelete} />
 		);
+		// setFormSections([...newFormSections]);
+		setFormSections(newFormSections);
+
+		setInputs({});
 	}
 
 	return (
@@ -63,7 +97,7 @@ function App() {
 				></Form>
 				<input type="submit" value="Submit" />
 			</form>
-			<div>{formSections}</div>
+			{formSections}
 		</>
 	);
 }

@@ -1,21 +1,18 @@
-export function CvSection({ formType, formInfo }) {
-	// const [value, setValue] = useState("")
-	// console.log(formInfo);
+export function CvSection({ id, formInfo, handleDelete }) {
 	const formInfoArray = Object.entries(formInfo);
-	console.log(formInfoArray);
-
 	const formItems = formInfoArray.map((item) => (
-		<>
-			<div>{item[1]}</div>
-		</>
+		<div key={item[0]}>{item[1]}</div>
 	));
 
 	return (
-		<>
-			<h2>{formType}</h2>
-			<div className="form-container">{formItems}</div>
-			<button>Edit</button>
-			<button>Delete</button>
-		</>
+		<div id={id}>
+			<div className="form-container">
+				{formItems}
+				<div>
+					<button>Edit</button>
+					<button onClick={handleDelete}>Delete</button>
+				</div>
+			</div>
+		</div>
 	);
 }
