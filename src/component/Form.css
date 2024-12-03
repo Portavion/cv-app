@@ -1,6 +1,7 @@
 .form-container {
 	display: flex;
 	flex-direction: column;
+	padding: 10px 0px;
 }
 
 .form-input {
