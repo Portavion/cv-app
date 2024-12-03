@@ -13,6 +13,8 @@ export function Form({ formType, inputs, handleChange }) {
 					onChange={handleChange}
 					className="form-input"
 				/>
+				<label>Email</label>
+
 				<input
 					type="email"
 					placeholder="email"
@@ -21,6 +23,8 @@ export function Form({ formType, inputs, handleChange }) {
 					onChange={handleChange}
 					className="form-input"
 				/>
+				<label>Telephone Number</label>
+
 				<input
 					type="tel"
 					placeholder="phone"
@@ -34,7 +38,7 @@ export function Form({ formType, inputs, handleChange }) {
 	} else if (formType === "Education") {
 		return (
 			<div className="form-container">
-				<label>Name</label>
+				<label>School Name</label>
 				<input
 					type="text"
 					placeholder="school name"
@@ -43,6 +47,8 @@ export function Form({ formType, inputs, handleChange }) {
 					onChange={handleChange}
 					className="form-input"
 				/>
+				<label>Title of Study</label>
+
 				<input
 					type="text"
 					placeholder="title of study"
@@ -51,6 +57,8 @@ export function Form({ formType, inputs, handleChange }) {
 					onChange={handleChange}
 					className="form-input"
 				/>
+				<label>Start Date</label>
+
 				<input
 					type="date"
 					name="start"
@@ -58,6 +66,8 @@ export function Form({ formType, inputs, handleChange }) {
 					onChange={handleChange}
 					className="form-input"
 				/>
+				<label>End Date</label>
+
 				<input
 					type="date"
 					name="end"
@@ -70,7 +80,7 @@ export function Form({ formType, inputs, handleChange }) {
 	} else {
 		return (
 			<div className="form-container">
-				<label>Name</label>
+				<label>Company Name</label>
 				<input
 					type="text"
 					placeholder="company name"
@@ -79,6 +89,8 @@ export function Form({ formType, inputs, handleChange }) {
 					onChange={handleChange}
 					className="form-input"
 				/>
+				<label>Position</label>
+
 				<input
 					type="text"
 					placeholder="position"
@@ -87,6 +99,8 @@ export function Form({ formType, inputs, handleChange }) {
 					onChange={handleChange}
 					className="form-input"
 				/>
+				<label>Responsibilities</label>
+
 				<input
 					type="text"
 					placeholder="responsibilities"
@@ -95,6 +109,8 @@ export function Form({ formType, inputs, handleChange }) {
 					onChange={handleChange}
 					className="form-input"
 				/>
+				<label>Start Date</label>
+
 				<input
 					type="date"
 					name="start"
@@ -102,6 +118,8 @@ export function Form({ formType, inputs, handleChange }) {
 					onChange={handleChange}
 					className="form-input"
 				/>
+				<label>End Date</label>
+
 				<input
 					type="date"
 					name="end"
