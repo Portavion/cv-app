@@ -30,12 +30,12 @@ export const educationForm = [
 	{
 		id: "start",
 		type: "date",
-		placeholder: "starting date",
+		placeholder: "01/01/2024",
 	},
 	{
 		id: "end",
 		type: "date",
-		placeholder: "end date",
+		placeholder: "01/01/2024",
 	},
 ];
 
@@ -63,11 +63,11 @@ export const experienceForm = [
 	{
 		id: "start",
 		type: "date",
-		placeholder: "starting date",
+		placeholder: "01/01/2024",
 	},
 	{
 		id: "end",
 		type: "date",
-		placeholder: "end date",
+		placeholder: "01/01/2024",
 	},
 ];
