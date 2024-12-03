@@ -1,6 +1,6 @@
 import { CvSection } from "./CvSection";
 
-export function HeaderSections({ sections, handleDelete }) {
+export function HeaderSections({ sections, handleDelete, handleEdit }) {
 	let generalSection = sections.filter((item) => item.type === "General");
 
 	generalSection = generalSection.map((section) => (
@@ -9,6 +9,7 @@ export function HeaderSections({ sections, handleDelete }) {
 			id={section.id}
 			formInfo={section.fieldValues}
 			handleDelete={handleDelete}
+			handleEdit={handleEdit}
 		></CvSection>
 	));
 
@@ -22,6 +23,7 @@ export function HeaderSections({ sections, handleDelete }) {
 			id={section.id}
 			formInfo={section.fieldValues}
 			handleDelete={handleDelete}
+			handleEdit={handleEdit}
 		></CvSection>
 	));
 
@@ -35,17 +37,22 @@ export function HeaderSections({ sections, handleDelete }) {
 			id={section.id}
 			formInfo={section.fieldValues}
 			handleDelete={handleDelete}
+			handleEdit={handleEdit}
 		></CvSection>
 	));
 
 	return (
 		<>
-			<h2>General</h2>
-			{generalSection}
+			<div className="General">
+				<h2>General</h2>
+				{generalSection}
+			</div>
 			<h2>Experience</h2>
-			{experienceSections}
-			<h2>Educatoin</h2>
-			{educationSections}
+			<div className="Experience">{experienceSections}</div>
+			<div className="Education">
+				<h2>Educatoin</h2>
+				{educationSections}
+			</div>
 		</>
 	);
 }

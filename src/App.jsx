@@ -24,7 +24,8 @@ function App() {
 	};
 
 	const handleDelete = (event) => {
-		let sectionId = event.target.parentNode.parentNode.parentNode.id;
+		// const sectionId = event.target.parentNode.parentNode.parentNode.id;
+		const sectionId = event.target.closest(".form-container").parentNode.id;
 
 		const removedSectionType = sections.filter(
 			(section) => section.id === sectionId
@@ -42,9 +43,45 @@ function App() {
 		);
 
 		setFormSections(newFormSections);
+	};
 
-		// console.log(newFormSections);
-		// sections.filter();
+	const handleEdit = (event) => {
+		const sectionId = event.target.closest(".form-container").parentNode.id;
+
+		const sectionFieldsDiv = event.target
+			.closest(".form-container")
+			.querySelectorAll("div");
+		let fieldInputs = {};
+
+		sectionFieldsDiv.forEach((div) => {
+			console.log(div);
+			if (div.className != "") {
+				fieldInputs[div.className] = div.innerHTML;
+			}
+		});
+		const sectionType =
+			event.target.parentNode.parentNode.parentNode.parentNode.className;
+
+		setFormType(sectionType);
+
+		setInputs(fieldInputs);
+
+		sections.filter((section) => section.id != sectionId);
+		sections = sections.filter((section) => section.id != sectionId);
+
+		if (sectionType === "General") {
+			setGeneralSubmitted(false);
+		}
+
+		const newFormSections = (
+			<HeaderSections
+				sections={sections}
+				handleDelete={handleDelete}
+				handleEdit={handleEdit}
+			/>
+		);
+
+		setFormSections(newFormSections);
 	};
 
 	function handleSubmission(e) {
@@ -65,19 +102,14 @@ function App() {
 
 		sections.push(formInfo);
 
-		// const newFormSections = sections.map((section) => (
-		// 	<CvSection
-		// 		key={section.id}
-		// 		formType={section.type}
-		// 		id={section.id}
-		// 		formInfo={section.fieldValues}
-		// 		handleDelete={handleDelete}
-		// 	></CvSection>
-		// ));
 		const newFormSections = (
-			<HeaderSections sections={sections} handleDelete={handleDelete} />
+			<HeaderSections
+				sections={sections}
+				handleDelete={handleDelete}
+				handleEdit={handleEdit}
+			/>
 		);
-		// setFormSections([...newFormSections]);
+
 		setFormSections(newFormSections);
 
 		setInputs({});

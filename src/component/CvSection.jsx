@@ -1,7 +1,9 @@
-export function CvSection({ id, formInfo, handleDelete }) {
+export function CvSection({ id, formInfo, handleDelete, handleEdit }) {
 	const formInfoArray = Object.entries(formInfo);
 	const formItems = formInfoArray.map((item) => (
-		<div key={item[0]}>{item[1]}</div>
+		<div key={item[0]} className={item[0]}>
+			{item[1]}
+		</div>
 	));
 
 	return (
@@ -9,7 +11,7 @@ export function CvSection({ id, formInfo, handleDelete }) {
 			<div className="form-container">
 				{formItems}
 				<div>
-					<button>Edit</button>
+					<button onClick={handleEdit}>Edit</button>
 					<button onClick={handleDelete}>Delete</button>
 				</div>
 			</div>
